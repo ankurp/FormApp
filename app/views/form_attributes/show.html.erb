@@ -1,0 +1,18 @@
+<div class="page-header">
+  <%= link_to form_attributes_path, class: 'btn btn-default' do %>
+    All Form_attributes
+  <% end %>
+  <%= link_to edit_form_attribute_path(@form_attribute), class: 'btn btn-primary' do %>
+    Edit
+  <% end %>
+  <h1>Show form_attribute</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Label:</dt>
+  <dd><%= @form_attribute.label %></dd>
+
+  <dt>Field type:</dt>
+  <dd><%= @form_attribute.field_type %></dd>
+
+</dl>

@@ -1,0 +1,24 @@
+<div class="page-header">
+  <%= link_to form_values_path, class: 'btn btn-default' do %>
+    All Form_values
+  <% end %>
+  <%= link_to edit_form_value_path(@form_value), class: 'btn btn-primary' do %>
+    Edit
+  <% end %>
+  <h1>Show form_value</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Form attribute:</dt>
+  <dd><%= @form_value.form_attribute %></dd>
+
+  <dt>Form:</dt>
+  <dd><%= @form_value.form %></dd>
+
+  <dt>Value:</dt>
+  <dd><%= @form_value.value %></dd>
+
+  <dt>User:</dt>
+  <dd><%= @form_value.user %></dd>
+
+</dl>

@@ -1,0 +1,49 @@
+<%= form_with(model: form_value, local: true) do |form| %>
+  <% if form_value.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(form_value.errors.count, "error") %> prohibited this form_value from being saved:</h2>
+
+      <ul>
+      <% form_value.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :form_attribute_id %>
+    <%= form.text_field :form_attribute_id, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :form_id %>
+    <%= form.text_field :form_id, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :value %>
+    <%= form.text_field :value, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <% if form_value.persisted? %>
+      <div class="float-right">
+        <%= link_to 'Destroy', form_value, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+      </div>
+    <% end %>
+
+    <%= form.submit class: 'btn btn-primary' %>
+
+    <% if form_value.persisted? %>
+      <%= link_to "Cancel", form_value, class: "btn btn-link" %>
+    <% else %>
+      <%= link_to "Cancel", form_values_path, class: "btn btn-link" %>
+    <% end %>
+  </div>
+<% end %>
