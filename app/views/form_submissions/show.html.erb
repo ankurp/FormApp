@@ -1,0 +1,18 @@
+<div class="page-header">
+  <%= link_to form_submissions_path, class: 'btn btn-default' do %>
+    All Form_submissions
+  <% end %>
+  <%= link_to edit_form_submission_path(@form_submission), class: 'btn btn-primary' do %>
+    Edit
+  <% end %>
+  <h1>Show form_submission</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Form:</dt>
+  <dd><%= @form_submission.form %></dd>
+
+  <dt>User:</dt>
+  <dd><%= @form_submission.user %></dd>
+
+</dl>

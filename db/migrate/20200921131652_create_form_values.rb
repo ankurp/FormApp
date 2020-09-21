@@ -4,7 +4,7 @@ class CreateFormValues < ActiveRecord::Migration[6.0]
       t.references :form_attribute, null: false, foreign_key: true
       t.references :form, null: false, foreign_key: true
       t.string :value
-      t.references :user, null: false, foreign_key: true
+      t.references :form_submission, null: false, foreign_key: true
 
       t.timestamps
     end

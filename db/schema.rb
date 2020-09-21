@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_21_105624) do
+ActiveRecord::Schema.define(version: 2020_09_21_131652) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 2020_09_21_105624) do
   create_table "form_attributes", force: :cascade do |t|
     t.string "label"
     t.string "field_type"
+    t.boolean "is_required", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -59,16 +60,25 @@ ActiveRecord::Schema.define(version: 2020_09_21_105624) do
     t.index ["form_id"], name: "index_form_attributes_forms_on_form_id"
   end
 
+  create_table "form_submissions", force: :cascade do |t|
+    t.bigint "form_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["form_id"], name: "index_form_submissions_on_form_id"
+    t.index ["user_id"], name: "index_form_submissions_on_user_id"
+  end
+
   create_table "form_values", force: :cascade do |t|
     t.bigint "form_attribute_id", null: false
     t.bigint "form_id", null: false
     t.string "value"
-    t.bigint "user_id", null: false
+    t.bigint "form_submission_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["form_attribute_id"], name: "index_form_values_on_form_attribute_id"
     t.index ["form_id"], name: "index_form_values_on_form_id"
-    t.index ["user_id"], name: "index_form_values_on_user_id"
+    t.index ["form_submission_id"], name: "index_form_values_on_form_submission_id"
   end
 
   create_table "forms", force: :cascade do |t|
@@ -132,8 +142,10 @@ ActiveRecord::Schema.define(version: 2020_09_21_105624) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "form_attributes_forms", "form_attributes"
   add_foreign_key "form_attributes_forms", "forms"
+  add_foreign_key "form_submissions", "forms"
+  add_foreign_key "form_submissions", "users"
   add_foreign_key "form_values", "form_attributes"
+  add_foreign_key "form_values", "form_submissions"
   add_foreign_key "form_values", "forms"
-  add_foreign_key "form_values", "users"
   add_foreign_key "services", "users"
 end

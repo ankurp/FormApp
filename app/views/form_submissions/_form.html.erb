@@ -1,0 +1,39 @@
+<%= form_with(model: form_submission, local: true) do |form| %>
+  <% if form_submission.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(form_submission.errors.count, "error") %> prohibited this form_submission from being saved:</h2>
+
+      <ul>
+      <% form_submission.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :form_id %>
+    <%= form.text_field :form_id, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <% if form_submission.persisted? %>
+      <div class="float-right">
+        <%= link_to 'Destroy', form_submission, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+      </div>
+    <% end %>
+
+    <%= form.submit class: 'btn btn-primary' %>
+
+    <% if form_submission.persisted? %>
+      <%= link_to "Cancel", form_submission, class: "btn btn-link" %>
+    <% else %>
+      <%= link_to "Cancel", form_submissions_path, class: "btn btn-link" %>
+    <% end %>
+  </div>
+<% end %>

@@ -69,6 +69,6 @@ class FormValuesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def form_value_params
-      params.require(:form_value).permit(:form_attribute_id, :form_id, :value, :user_id)
+      params.require(:form_value).permit(:form_attribute_id, :form_id, :value, :form_submission)
     end
 end

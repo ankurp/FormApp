@@ -1,7 +1,18 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
-  resources :form_values
+  resources :form_submissions
+  namespace :admin do
+    resources :users
+    resources :announcements
+    resources :form_values
+    resources :forms
+    resources :notifications
+    resources :form_attributes
+    resources :services
+
+    root to: "users#index"
+  end
   resources :form_attributes
   resources :forms
   get '/privacy', to: 'home#privacy'

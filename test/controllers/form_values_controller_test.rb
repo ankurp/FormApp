@@ -17,7 +17,7 @@ class FormValuesControllerTest < ActionDispatch::IntegrationTest
 
   test "should create form_value" do
     assert_difference('FormValue.count') do
-      post form_values_url, params: { form_value: { form_attribute_id: @form_value.form_attribute_id, form_id: @form_value.form_id, user_id: @form_value.user_id, value: @form_value.value } }
+      post form_values_url, params: { form_value: { form_attribute_id: @form_value.form_attribute_id, form_id: @form_value.form_id, form_submission: @form_value.form_submission, value: @form_value.value } }
     end
 
     assert_redirected_to form_value_url(FormValue.last)
@@ -34,7 +34,7 @@ class FormValuesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update form_value" do
-    patch form_value_url(@form_value), params: { form_value: { form_attribute_id: @form_value.form_attribute_id, form_id: @form_value.form_id, user_id: @form_value.user_id, value: @form_value.value } }
+    patch form_value_url(@form_value), params: { form_value: { form_attribute_id: @form_value.form_attribute_id, form_id: @form_value.form_id, form_submission: @form_value.form_submission, value: @form_value.value } }
     assert_redirected_to form_value_url(@form_value)
   end
 

@@ -16,7 +16,7 @@ class FormValuesTest < ApplicationSystemTestCase
 
     fill_in "Form attribute", with: @form_value.form_attribute_id
     fill_in "Form", with: @form_value.form_id
-    fill_in "User", with: @form_value.user_id
+    fill_in "Form submission", with: @form_value.form_submission
     fill_in "Value", with: @form_value.value
     click_on "Create Form value"
 
@@ -30,7 +30,7 @@ class FormValuesTest < ApplicationSystemTestCase
 
     fill_in "Form attribute", with: @form_value.form_attribute_id
     fill_in "Form", with: @form_value.form_id
-    fill_in "User", with: @form_value.user_id
+    fill_in "Form submission", with: @form_value.form_submission
     fill_in "Value", with: @form_value.value
     click_on "Update Form value"
 

@@ -1,13 +1,9 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  form_attribute: one
   form: one
-  value: MyString
-  form_submission: 
+  user: one
 
 two:
-  form_attribute: two
   form: two
-  value: MyString
-  form_submission: 
+  user: two
