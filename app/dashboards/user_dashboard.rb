@@ -12,7 +12,7 @@ class UserDashboard < Administrate::BaseDashboard
     avatar_blob: Field::HasOne,
     notifications: Field::HasMany,
     services: Field::HasMany,
-    form_values: Field::HasMany,
+    form_submissions: Field::HasMany,
     id: Field::Number,
     email: Field::String,
     encrypted_password: Field::String,
@@ -46,7 +46,7 @@ class UserDashboard < Administrate::BaseDashboard
   avatar_blob
   notifications
   services
-  form_values
+  form_submissions
   id
   email
   encrypted_password
@@ -69,7 +69,7 @@ class UserDashboard < Administrate::BaseDashboard
   avatar_blob
   notifications
   services
-  form_values
+  form_submissions
   email
   encrypted_password
   reset_password_token
@@ -96,7 +96,7 @@ class UserDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how users are displayed
   # across all pages of the admin dashboard.
   #
-  def display_resource(user)
-    "#{user.email} - #{user.name}"
-  end
+  # def display_resource(user)
+  #   "User ##{user.id}"
+  # end
 end

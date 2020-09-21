@@ -10,7 +10,7 @@ class FormValueDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     form_attribute: Field::BelongsTo,
     form: Field::BelongsTo,
-    user: Field::BelongsTo,
+    form_submission: Field::BelongsTo,
     id: Field::Number,
     value: Field::String,
     created_at: Field::DateTime,
@@ -25,7 +25,7 @@ class FormValueDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = %i[
   form_attribute
   form
-  user
+  form_submission
   id
   ].freeze
 
@@ -34,7 +34,7 @@ class FormValueDashboard < Administrate::BaseDashboard
   SHOW_PAGE_ATTRIBUTES = %i[
   form_attribute
   form
-  user
+  form_submission
   id
   value
   created_at
@@ -47,7 +47,7 @@ class FormValueDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = %i[
   form_attribute
   form
-  user
+  form_submission
   value
   ].freeze
 

@@ -1,6 +1,6 @@
 require "administrate/base_dashboard"
 
-class FormAttributeDashboard < Administrate::BaseDashboard
+class FormSubmissionDashboard < Administrate::BaseDashboard
   # ATTRIBUTE_TYPES
   # a hash that describes the type of each of the model's fields.
   #
@@ -8,12 +8,10 @@ class FormAttributeDashboard < Administrate::BaseDashboard
   # which determines how the attribute is displayed
   # on pages throughout the dashboard.
   ATTRIBUTE_TYPES = {
-    forms: Field::HasMany,
+    form: Field::BelongsTo,
+    user: Field::BelongsTo,
     form_values: Field::HasMany,
     id: Field::Number,
-    label: Field::String,
-    field_type: Field::String,
-    is_required: Field::Boolean,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -24,21 +22,19 @@ class FormAttributeDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
-  forms
+  form
+  user
   form_values
   id
-  label
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = %i[
-  forms
+  form
+  user
   form_values
   id
-  label
-  field_type
-  is_required
   created_at
   updated_at
   ].freeze
@@ -47,11 +43,9 @@ class FormAttributeDashboard < Administrate::BaseDashboard
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
-  forms
+  form
+  user
   form_values
-  label
-  field_type
-  is_required
   ].freeze
 
   # COLLECTION_FILTERS
@@ -66,10 +60,10 @@ class FormAttributeDashboard < Administrate::BaseDashboard
   #   }.freeze
   COLLECTION_FILTERS = {}.freeze
 
-  # Overwrite this method to customize how form attributes are displayed
+  # Overwrite this method to customize how form submissions are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(form_attribute)
-  #   "FormAttribute ##{form_attribute.id}"
+  # def display_resource(form_submission)
+  #   "FormSubmission ##{form_submission.id}"
   # end
 end

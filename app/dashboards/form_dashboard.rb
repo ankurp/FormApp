@@ -10,6 +10,7 @@ class FormDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     form_values: Field::HasMany,
     form_attributes: Field::HasMany,
+    form_submissions: Field::HasMany,
     users: Field::HasMany,
     id: Field::Number,
     name: Field::String,
@@ -25,8 +26,8 @@ class FormDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = %i[
   form_values
   form_attributes
+  form_submissions
   users
-  id
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -34,6 +35,7 @@ class FormDashboard < Administrate::BaseDashboard
   SHOW_PAGE_ATTRIBUTES = %i[
   form_values
   form_attributes
+  form_submissions
   users
   id
   name
@@ -47,6 +49,7 @@ class FormDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = %i[
   form_values
   form_attributes
+  form_submissions
   users
   name
   ].freeze
@@ -66,7 +69,7 @@ class FormDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how forms are displayed
   # across all pages of the admin dashboard.
   #
-  def display_resource(form)
-    "Form - #{form.name}"
-  end
+  # def display_resource(form)
+  #   "Form ##{form.id}"
+  # end
 end
