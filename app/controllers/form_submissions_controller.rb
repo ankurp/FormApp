@@ -14,7 +14,10 @@ class FormSubmissionsController < ApplicationController
 
   # GET /form_submissions/new
   def new
-    @form_submission = FormSubmission.new
+    @form_submission = FormSubmission.new(user: current_user, form_id: params[:form_id])
+    @form_submission.form_values = @form_submission.form_attributes.map do |fa|
+      @form_submission.form_values.build(form_id: params[:form_id], form_attribute: fa)
+    end
   end
 
   # GET /form_submissions/1/edit
@@ -28,7 +31,7 @@ class FormSubmissionsController < ApplicationController
 
     respond_to do |format|
       if @form_submission.save
-        format.html { redirect_to @form_submission, notice: 'Form submission was successfully created.' }
+        format.html { redirect_to @form_submission, notice: 'Form submission was successful.' }
         format.json { render :show, status: :created, location: @form_submission }
       else
         format.html { render :new }
@@ -69,6 +72,6 @@ class FormSubmissionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def form_submission_params
-      params.require(:form_submission).permit(:form_id, :user_id)
+      params.require(:form_submission).permit(:form_id, :user_id, form_values_attributes: [:form_id, :form_attribute_id, :value])
     end
 end

@@ -5,14 +5,14 @@
   <%= link_to edit_form_submission_path(@form_submission), class: 'btn btn-primary' do %>
     Edit
   <% end %>
-  <h1>Show form_submission</h1>
+  <h1>Submitted Form: <%= @form_submission.form.name %></h1>
 </div>
 
-<dl class="dl-horizontal">
-  <dt>Form:</dt>
-  <dd><%= @form_submission.form %></dd>
-
-  <dt>User:</dt>
-  <dd><%= @form_submission.user %></dd>
-
-</dl>
+<div class="page-header">
+  <% @form_submission.form_values.each do |fv| %>
+    <div class="form-group">
+      <%= fv.form_attribute.label %>:
+      <%= fv.value %>
+    </div>
+  <% end %>
+</div>

@@ -12,15 +12,6 @@ class FormsController < ApplicationController
   def show
   end
 
-  # GET /forms/new
-  def new
-    @form = Form.new
-  end
-
-  # GET /forms/1/edit
-  def edit
-  end
-
   # POST /forms
   # POST /forms.json
   def create

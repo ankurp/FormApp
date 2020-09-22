@@ -69,7 +69,7 @@ class FormAttributeDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how form attributes are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(form_attribute)
-  #   "FormAttribute ##{form_attribute.id}"
-  # end
+  def display_resource(form_attribute)
+    form_attribute.label
+  end
 end

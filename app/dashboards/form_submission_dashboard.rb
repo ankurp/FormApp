@@ -63,7 +63,7 @@ class FormSubmissionDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how form submissions are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(form_submission)
-  #   "FormSubmission ##{form_submission.id}"
-  # end
+  def display_resource(form_submission)
+    "FormSubmission ##{form_submission.id}"
+  end
 end

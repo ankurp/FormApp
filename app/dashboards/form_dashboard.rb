@@ -69,7 +69,7 @@ class FormDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how forms are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(form)
-  #   "Form ##{form.id}"
-  # end
+  def display_resource(form)
+    form.name
+  end
 end

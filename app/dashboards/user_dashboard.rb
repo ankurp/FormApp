@@ -10,8 +10,6 @@ class UserDashboard < Administrate::BaseDashboard
   ATTRIBUTE_TYPES = {
     avatar_attachment: Field::HasOne,
     avatar_blob: Field::HasOne,
-    notifications: Field::HasMany,
-    services: Field::HasMany,
     form_submissions: Field::HasMany,
     id: Field::Number,
     email: Field::String,
@@ -33,10 +31,10 @@ class UserDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
-  avatar_attachment
-  avatar_blob
-  notifications
-  services
+  id
+  email
+  first_name
+  last_name
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -44,8 +42,6 @@ class UserDashboard < Administrate::BaseDashboard
   SHOW_PAGE_ATTRIBUTES = %i[
   avatar_attachment
   avatar_blob
-  notifications
-  services
   form_submissions
   id
   email
@@ -67,8 +63,6 @@ class UserDashboard < Administrate::BaseDashboard
   FORM_ATTRIBUTES = %i[
   avatar_attachment
   avatar_blob
-  notifications
-  services
   form_submissions
   email
   encrypted_password
@@ -96,7 +90,7 @@ class UserDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how users are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(user)
-  #   "User ##{user.id}"
-  # end
+  def display_resource(user)
+    "#{user.name} - #{user.email}"
+  end
 end

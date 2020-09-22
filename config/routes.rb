@@ -6,13 +6,15 @@ Rails.application.routes.draw do
     resources :announcements
     resources :form_values
     resources :forms
-    resources :notifications
     resources :form_submissions
     resources :form_attributes
-    resources :services
 
     root to: "users#index"
   end
+
+  resources :forms
+  resources :form_submissions
+
   get '/privacy', to: 'home#privacy'
   get '/terms', to: 'home#terms'
     authenticate :user, lambda { |u| u.admin? } do

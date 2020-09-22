@@ -25,7 +25,7 @@ class FormValueDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = %i[
   form_attribute
   form
-  form_submission
+  value
   id
   ].freeze
 
@@ -66,7 +66,7 @@ class FormValueDashboard < Administrate::BaseDashboard
   # Overwrite this method to customize how form values are displayed
   # across all pages of the admin dashboard.
   #
-  # def display_resource(form_value)
-  #   "FormValue ##{form_value.id}"
-  # end
+  def display_resource(form_value)
+    form_value.value
+  end
 end

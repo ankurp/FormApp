@@ -1,15 +1,4 @@
 <div class="page-header">
-  <%= link_to forms_path, class: 'btn btn-default' do %>
-    All Forms
-  <% end %>
-  <%= link_to edit_form_path(@form), class: 'btn btn-primary' do %>
-    Edit
-  <% end %>
-  <h1>Show form</h1>
+  <h1><%= @form.name %> Form</h1>
+  <%= link_to 'Start Form', new_form_submission_path(form_id: @form.id) %>
 </div>
-
-<dl class="dl-horizontal">
-  <dt>Name:</dt>
-  <dd><%= @form.name %></dd>
-
-</dl>
