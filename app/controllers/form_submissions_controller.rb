@@ -1,10 +1,13 @@
 class FormSubmissionsController < ApplicationController
   before_action :set_form_submission, only: [:show, :edit, :update, :destroy]
 
+  after_action :verify_authorized, except: [:index, :new]
+  after_action :verify_policy_scoped, only: :index
+
   # GET /form_submissions
   # GET /form_submissions.json
   def index
-    @form_submissions = FormSubmission.all
+    @form_submissions = policy_scope(FormSubmission)
   end
 
   # GET /form_submissions/1
@@ -14,7 +17,12 @@ class FormSubmissionsController < ApplicationController
 
   # GET /form_submissions/new
   def new
-    @form_submission = FormSubmission.new(user: current_user, form_id: params[:form_id])
+    if params[:form_id].blank?
+      flash[:alert] = "Missing Form Info"
+      redirect_to(request.referrer || root_path) and return
+    end
+
+    @form_submission = current_user.form_submissions.build(form_id: params[:form_id])
     @form_submission.form_values = @form_submission.form_attributes.map do |fa|
       @form_submission.form_values.build(form_id: params[:form_id], form_attribute: fa)
     end
@@ -22,13 +30,13 @@ class FormSubmissionsController < ApplicationController
 
   # GET /form_submissions/1/edit
   def edit
+    authorize @form_submission, :edit?
   end
 
   # POST /form_submissions
   # POST /form_submissions.json
   def create
-    @form_submission = FormSubmission.new(form_submission_params)
-
+    @form_submission = current_user.form_submissions.build(form_submission_params)
     respond_to do |format|
       if @form_submission.save
         format.html { redirect_to @form_submission, notice: 'Form submission was successful.' }
@@ -43,6 +51,7 @@ class FormSubmissionsController < ApplicationController
   # PATCH/PUT /form_submissions/1
   # PATCH/PUT /form_submissions/1.json
   def update
+    authorize @form_submission, :update?
     respond_to do |format|
       if @form_submission.update(form_submission_params)
         format.html { redirect_to @form_submission, notice: 'Form submission was successfully updated.' }
@@ -57,6 +66,7 @@ class FormSubmissionsController < ApplicationController
   # DELETE /form_submissions/1
   # DELETE /form_submissions/1.json
   def destroy
+    authorize @form_submission, :destroy?
     @form_submission.destroy
     respond_to do |format|
       format.html { redirect_to form_submissions_url, notice: 'Form submission was successfully destroyed.' }
@@ -67,11 +77,11 @@ class FormSubmissionsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_form_submission
-      @form_submission = FormSubmission.find(params[:id])
+      @form_submission = policy_scope(FormSubmission).find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def form_submission_params
-      params.require(:form_submission).permit(:form_id, :user_id, form_values_attributes: [:form_id, :form_attribute_id, :value])
+      params.require(:form_submission).permit(:form_id, form_values_attributes: [:form_id, :form_attribute_id, :value])
     end
 end
