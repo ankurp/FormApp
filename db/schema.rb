@@ -71,13 +71,11 @@ ActiveRecord::Schema.define(version: 2020_09_21_131652) do
 
   create_table "form_values", force: :cascade do |t|
     t.bigint "form_attribute_id", null: false
-    t.bigint "form_id", null: false
     t.string "value"
     t.bigint "form_submission_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["form_attribute_id"], name: "index_form_values_on_form_attribute_id"
-    t.index ["form_id"], name: "index_form_values_on_form_id"
     t.index ["form_submission_id"], name: "index_form_values_on_form_submission_id"
   end
 
@@ -146,6 +144,5 @@ ActiveRecord::Schema.define(version: 2020_09_21_131652) do
   add_foreign_key "form_submissions", "users"
   add_foreign_key "form_values", "form_attributes"
   add_foreign_key "form_values", "form_submissions"
-  add_foreign_key "form_values", "forms"
   add_foreign_key "services", "users"
 end
