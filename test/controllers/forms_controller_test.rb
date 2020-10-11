@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class FormsControllerTest < ActionDispatch::IntegrationTest
   setup do
@@ -16,8 +16,8 @@ class FormsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create form" do
-    assert_difference('Form.count') do
-      post forms_url, params: { form: { name: @form.name } }
+    assert_difference("Form.count") do
+      post forms_url, params: {form: {name: @form.name}}
     end
 
     assert_redirected_to form_url(Form.last)
@@ -34,12 +34,12 @@ class FormsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update form" do
-    patch form_url(@form), params: { form: { name: @form.name } }
+    patch form_url(@form), params: {form: {name: @form.name}}
     assert_redirected_to form_url(@form)
   end
 
   test "should destroy form" do
-    assert_difference('Form.count', -1) do
+    assert_difference("Form.count", -1) do
       delete form_url(@form)
     end
 

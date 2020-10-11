@@ -14,7 +14,7 @@ class FormValueDashboard < Administrate::BaseDashboard
     id: Field::Number,
     value: Field::String,
     created_at: Field::DateTime,
-    updated_at: Field::DateTime,
+    updated_at: Field::DateTime
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -23,32 +23,32 @@ class FormValueDashboard < Administrate::BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = %i[
-  form_attribute
-  form
-  value
-  id
+    form_attribute
+    form
+    value
+    id
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = %i[
-  form_attribute
-  form
-  form_submission
-  id
-  value
-  created_at
-  updated_at
+    form_attribute
+    form
+    form_submission
+    id
+    value
+    created_at
+    updated_at
   ].freeze
 
   # FORM_ATTRIBUTES
   # an array of attributes that will be displayed
   # on the model's form (`new` and `edit`) pages.
   FORM_ATTRIBUTES = %i[
-  form_attribute
-  form
-  form_submission
-  value
+    form_attribute
+    form
+    form_submission
+    value
   ].freeze
 
   # COLLECTION_FILTERS

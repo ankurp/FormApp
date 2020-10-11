@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class FormSubmissionsControllerTest < ActionDispatch::IntegrationTest
   setup do
@@ -16,8 +16,8 @@ class FormSubmissionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create form_submission" do
-    assert_difference('FormSubmission.count') do
-      post form_submissions_url, params: { form_submission: { form_id: @form_submission.form_id, user_id: @form_submission.user_id } }
+    assert_difference("FormSubmission.count") do
+      post form_submissions_url, params: {form_submission: {form_id: @form_submission.form_id, user_id: @form_submission.user_id}}
     end
 
     assert_redirected_to form_submission_url(FormSubmission.last)
@@ -34,12 +34,12 @@ class FormSubmissionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update form_submission" do
-    patch form_submission_url(@form_submission), params: { form_submission: { form_id: @form_submission.form_id, user_id: @form_submission.user_id } }
+    patch form_submission_url(@form_submission), params: {form_submission: {form_id: @form_submission.form_id, user_id: @form_submission.user_id}}
     assert_redirected_to form_submission_url(@form_submission)
   end
 
   test "should destroy form_submission" do
-    assert_difference('FormSubmission.count', -1) do
+    assert_difference("FormSubmission.count", -1) do
       delete form_submission_url(@form_submission)
     end
 

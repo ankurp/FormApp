@@ -19,7 +19,7 @@ class FormSubmissionsController < ApplicationController
   def new
     if params[:form_id].blank?
       flash[:alert] = "Missing Form Info"
-      redirect_to(request.referrer || root_path) and return
+      redirect_to(request.referrer || root_path) && return
     end
 
     @form_submission = current_user.form_submissions.build(form_id: params[:form_id])
@@ -39,7 +39,7 @@ class FormSubmissionsController < ApplicationController
     @form_submission = current_user.form_submissions.build(form_submission_params)
     respond_to do |format|
       if @form_submission.save
-        format.html { redirect_to @form_submission, notice: 'Form submission was successful.' }
+        format.html { redirect_to @form_submission, notice: "Form submission was successful." }
         format.json { render :show, status: :created, location: @form_submission }
       else
         format.html { render :new }
@@ -54,7 +54,7 @@ class FormSubmissionsController < ApplicationController
     authorize @form_submission, :update?
     respond_to do |format|
       if @form_submission.update(form_submission_params)
-        format.html { redirect_to @form_submission, notice: 'Form submission was successfully updated.' }
+        format.html { redirect_to @form_submission, notice: "Form submission was successfully updated." }
         format.json { render :show, status: :ok, location: @form_submission }
       else
         format.html { render :edit }
@@ -69,19 +69,20 @@ class FormSubmissionsController < ApplicationController
     authorize @form_submission, :destroy?
     @form_submission.destroy
     respond_to do |format|
-      format.html { redirect_to form_submissions_url, notice: 'Form submission was successfully destroyed.' }
+      format.html { redirect_to form_submissions_url, notice: "Form submission was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_form_submission
-      @form_submission = policy_scope(FormSubmission).find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def form_submission_params
-      params.require(:form_submission).permit(:form_id, form_values_attributes: [:form_id, :form_attribute_id, :value])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_form_submission
+    @form_submission = policy_scope(FormSubmission).find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def form_submission_params
+    params.require(:form_submission).permit(:form_id, form_values_attributes: [:form_id, :form_attribute_id, :value])
+  end
 end

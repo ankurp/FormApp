@@ -1,4 +1,4 @@
-require 'test_helper'
+require "test_helper"
 
 class FormAttributesControllerTest < ActionDispatch::IntegrationTest
   setup do
@@ -16,8 +16,8 @@ class FormAttributesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should create form_attribute" do
-    assert_difference('FormAttribute.count') do
-      post form_attributes_url, params: { form_attribute: { field_type: @form_attribute.field_type, label: @form_attribute.label } }
+    assert_difference("FormAttribute.count") do
+      post form_attributes_url, params: {form_attribute: {field_type: @form_attribute.field_type, label: @form_attribute.label}}
     end
 
     assert_redirected_to form_attribute_url(FormAttribute.last)
@@ -34,12 +34,12 @@ class FormAttributesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update form_attribute" do
-    patch form_attribute_url(@form_attribute), params: { form_attribute: { field_type: @form_attribute.field_type, label: @form_attribute.label } }
+    patch form_attribute_url(@form_attribute), params: {form_attribute: {field_type: @form_attribute.field_type, label: @form_attribute.label}}
     assert_redirected_to form_attribute_url(@form_attribute)
   end
 
   test "should destroy form_attribute" do
-    assert_difference('FormAttribute.count', -1) do
+    assert_difference("FormAttribute.count", -1) do
       delete form_attribute_url(@form_attribute)
     end
 

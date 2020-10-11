@@ -1,7 +1,7 @@
 class FormSubmissionPolicy < ApplicationPolicy
   class Scope < Scope
     def initialize(user, scope)
-      @user  = user
+      @user = user
       @scope = scope
     end
 
@@ -26,14 +26,14 @@ class FormSubmissionPolicy < ApplicationPolicy
   end
 
   def edit?
-    user.admin? or form_submission.user_id == user.id
+    user.admin? || (form_submission.user_id == user.id)
   end
 
   def update?
-    user.admin? or form_submission.user_id == user.id
+    user.admin? || (form_submission.user_id == user.id)
   end
 
   def destroy?
-    user.admin? or form_submission.user_id == user.id
+    user.admin? || (form_submission.user_id == user.id)
   end
 end

@@ -19,7 +19,7 @@ class FormsController < ApplicationController
 
     respond_to do |format|
       if @form.save
-        format.html { redirect_to @form, notice: 'Form was successfully created.' }
+        format.html { redirect_to @form, notice: "Form was successfully created." }
         format.json { render :show, status: :created, location: @form }
       else
         format.html { render :new }
@@ -33,7 +33,7 @@ class FormsController < ApplicationController
   def update
     respond_to do |format|
       if @form.update(form_params)
-        format.html { redirect_to @form, notice: 'Form was successfully updated.' }
+        format.html { redirect_to @form, notice: "Form was successfully updated." }
         format.json { render :show, status: :ok, location: @form }
       else
         format.html { render :edit }
@@ -47,19 +47,20 @@ class FormsController < ApplicationController
   def destroy
     @form.destroy
     respond_to do |format|
-      format.html { redirect_to forms_url, notice: 'Form was successfully destroyed.' }
+      format.html { redirect_to forms_url, notice: "Form was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_form
-      @form = Form.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def form_params
-      params.require(:form).permit(:name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_form
+    @form = Form.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def form_params
+    params.require(:form).permit(:name)
+  end
 end
