@@ -1,0 +1,8 @@
+<div class="page-header">
+  <% form_submission.form_values.each do |fv| %>
+    <div class="form-group">
+      <%= fv.form_attribute.label %>:
+      <%= fv.value %>
+    </div>
+  <% end %>
+</div>

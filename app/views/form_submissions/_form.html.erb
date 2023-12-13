@@ -1,0 +1,28 @@
+<div class="page-header">
+  <% if form_submission.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(form_submission.errors.count, "error") %> prohibited this form_submission from being saved:</h2>
+
+      <ul>
+      <% form_submission.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form_for @form_submission do |f| %>
+    <% @form_submission.form_values.each do |value| %>
+      <%= f.fields_for :form_values, value do |fv| %>
+        <div class="form-group">
+          <%= fv.label :value, value.form_attribute.label %>
+          <%= fv.send(value.form_attribute.field_type, :value, required: value.form_attribute.is_required?, class: 'form-control') %>
+        </div>
+        <%= fv.hidden_field :form_attribute_id %>
+      <% end %>
+    <% end %>
+    <%= f.hidden_field :form_id %>
+    <%= f.hidden_field :user_id %>
+    <%= f.submit 'Submit', class: "btn btn-lg btn-primary" %>
+  <% end %>
+</div>
